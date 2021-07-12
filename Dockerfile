@@ -19,6 +19,7 @@ RUN apt-get -qq update && apt-get -qq install \
         libjpeg-dev \
         zlib1g-dev \
         libmemcached-dev \
+        libicu-dev \
 		&& apt-get clean \
 		&& apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
@@ -36,6 +37,9 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN pecl install xdebug memcached \
     && docker-php-ext-install gd json mysqli \
     && docker-php-ext-enable xdebug memcached
+
+RUN docker-php-ext-configure intl \
+    && docker-php-ext-install intl
 
 COPY bin/* /usr/local/bin/
 
