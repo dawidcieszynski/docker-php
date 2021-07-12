@@ -6,6 +6,8 @@ MAINTAINER Joel Rowley <joel.rowley@wilds.org>
 LABEL vendor="The Wilds" \
       org.wilds.docker-php.version="${PHP_VERSION}.0"
 
+RUN echo "PHP_VERSION: $PHP_VERSION"
+
 RUN apt-get -qq update && apt-get -qq install \
         acl \
         libcurl3-dev \
