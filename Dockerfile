@@ -37,6 +37,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     && mv wp-cli.phar /usr/local/bin/wp
 
 RUN pecl install xdebug memcached \
+    && docker-php-ext-configure gd --with-jpeg \
     && docker-php-ext-install gd json mysqli \
     && docker-php-ext-enable xdebug memcached
 
