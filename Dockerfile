@@ -65,6 +65,12 @@ ENV APACHE_ENVVARS=$APACHE_CONFDIR/envvars
 
 COPY php.ini-development.txt $PHP_INI_DIR/php.ini
 
+# Installs sendmail
+RUN apt-get update && apt-get install -q -y sendmail && rm -rf /var/lib/apt/lists/*
+RUN echo "sendmail_path=/usr/sbin/sendmail -t -i" >> /usr/local/etc/php/conf.d/sendmail.ini
+RUN sed -i '/#!\/bin\/sh/aservice sendmail restart' /usr/local/bin/docker-php-entrypoint
+RUN sed -i '/#!\/bin\/sh/aecho "$(hostname -i)\t$(hostname) $(hostname).localhost" >> /etc/hosts' /usr/local/bin/docker-php-entrypoint
+
 # Copy custom ini modules
 COPY mods-available/*.ini $CONFD_PATH/
 
