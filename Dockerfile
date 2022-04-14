@@ -1,4 +1,4 @@
-ARG PHP_VERSION=7.4
+ARG PHP_VERSION=7.4.8
 
 FROM php:${PHP_VERSION}-apache
 MAINTAINER Joel Rowley <joel.rowley@wilds.org>
