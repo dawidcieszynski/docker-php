@@ -4,8 +4,8 @@ RUN apt-get -y update \
     && apt-get install -y libicu-dev \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl \
-    && docker-php-ext-configure gd --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-configure gd \
+    && docker-php-ext-install gd \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -y update \
