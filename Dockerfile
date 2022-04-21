@@ -1,4 +1,4 @@
-FROM wildscamp/php:7.4
+FROM wildscamp/php:7.2
 
 RUN apt-get -y update \
     && apt-get install -y libicu-dev \
